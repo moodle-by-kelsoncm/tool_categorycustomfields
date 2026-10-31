@@ -11,7 +11,7 @@ Go to *Site administration > Courses > Category custom fields*. The page works l
 3. Fill in the name, the short name (used by the web service), the description and the type settings.
 
 .. figure:: img/settings.png
-   :alt: The settings of a category custom field, with the Locked and Visible on the category page to options.
+   :alt: The settings of a category custom field, with the Locked and Visible to options.
    :width: 100%
 
    The area settings at the end of the field form.
@@ -22,7 +22,7 @@ Area settings
 Locked
    Only users with ``tool/categorycustomfields:changelockedcustomfields`` can edit the value.
 
-Visible on the category page to
+Visible to
    * *Everyone*: everyone who can see the category, on the category page and through the web service.
    * *Users who can edit the values*: only users with ``tool/categorycustomfields:edit`` in the category.
    * *Nobody*: the value is not shown and not returned by the web service. Users who can edit the values still see it on the editing page.

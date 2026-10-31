@@ -28,7 +28,7 @@ Principais recursos
 -------------------
 
 * Gestão dos campos em *Administração do site > Cursos > Campos personalizados de categoria*, com a mesma interface dos campos personalizados do curso.
-* Configurações da área por campo: *Bloqueado* e *Visível na página da categoria para*.
+* Configurações da área por campo: *Bloqueado* e *Visível para*.
 * Edição dos valores pelo menu de configurações da categoria, com permissões no contexto da categoria.
 * Valores visíveis na página da categoria.
 * Web service ``tool_categorycustomfields_get_values``, também disponível para AJAX e para o aplicativo Moodle.

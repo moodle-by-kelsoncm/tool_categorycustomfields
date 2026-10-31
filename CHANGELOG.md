@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 - 2026-10-31
+
+### Changed
+- Built on `local_fieldssuite`, the common plugin of the Moodle Fields Suite, now a required dependency. The behaviour, the data and the `tool_categorycustomfields_get_values` web service stay the same.
+- The values are edited at `/local/fieldssuite/edit.php` and the fields managed at `/local/fieldssuite/manage.php`; the old addresses redirect there.
+- The area settings are named *Locked* and *Visible to*, as in the other areas of the suite.
+
+### Removed
+- The code now in `local_fieldssuite`: edit form, values template and placement module.
+
 ## 1.0.0 - 2026-10-31
 
 First release.

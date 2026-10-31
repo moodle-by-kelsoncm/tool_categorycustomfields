@@ -27,6 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 $ADMIN->add('courses', new admin_externalpage(
     'tool_categorycustomfields',
     new lang_string('categorycustomfields', 'tool_categorycustomfields'),
-    new moodle_url('/admin/tool/categorycustomfields/customfield.php'),
+    new moodle_url('/local/fieldssuite/manage.php', ['component' => 'tool_categorycustomfields', 'area' => 'category']),
     'tool/categorycustomfields:configurecustomfields'
 ));

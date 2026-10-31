@@ -6,6 +6,7 @@ Requirements
 
 * Moodle 4.5 LTS or 5.3 LTS.
 * PHP supported by your Moodle version.
+* `local_fieldssuite <https://moodle-fields-suite.github.io/local_fieldssuite/>`_, the common plugin of the Moodle Fields Suite (since 1.1.0). Install it first, or together.
 
 From a ZIP file
 ---------------
