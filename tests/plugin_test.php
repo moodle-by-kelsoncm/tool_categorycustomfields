@@ -17,6 +17,7 @@
 namespace tool_categorycustomfields;
 
 use core_customfield\field_controller;
+use local_fieldssuite\local\display;
 use tool_categorycustomfields\customfield\category_handler;
 
 /**
@@ -27,6 +28,7 @@ use tool_categorycustomfields\customfield\category_handler;
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @covers     \tool_categorycustomfields\customfield\category_handler
  * @covers     \tool_categorycustomfields\hook_callbacks
+ * @covers     \local_fieldssuite\local\display
  * @covers     \tool_categorycustomfields\observer
  */
 final class plugin_test extends \advanced_testcase {
@@ -169,14 +171,14 @@ final class plugin_test extends \advanced_testcase {
         $this->add_value($internal, $category->id, 'Secret');
 
         $this->setUser($this->getDataGenerator()->create_user());
-        $html = hook_callbacks::render_category_values($category->id);
+        $html = display::render_values(category_handler::create(), $category->id);
         $this->assertStringContainsString('R&amp;D', $html);
         $this->assertStringContainsString('Engineering', $html);
         $this->assertStringNotContainsString('Secret', $html);
         $this->assertStringNotContainsString('Empty', $html);
 
         $other = $this->getDataGenerator()->create_category();
-        $this->assertSame('', hook_callbacks::render_category_values($other->id));
+        $this->assertSame('', display::render_values(category_handler::create(), $other->id));
     }
 
     /**
@@ -196,5 +198,20 @@ final class plugin_test extends \advanced_testcase {
 
         $this->assertFalse($DB->record_exists('customfield_data', ['fieldid' => $field->get('id'), 'instanceid' => $category->id]));
         $this->assertTrue($DB->record_exists('customfield_data', ['fieldid' => $field->get('id'), 'instanceid' => $keep->id]));
+    }
+
+    /**
+     * The area uses the common pages of local_fieldssuite and its own admin page.
+     */
+    public function test_common_pages(): void {
+        $handler = category_handler::create();
+        $this->assertInstanceOf(\local_fieldssuite\customfield\area_handler::class, $handler);
+        $this->assertSame('tool_categorycustomfields', $handler->get_admin_section());
+        $this->assertSame('/local/fieldssuite/edit.php', strtok($handler->get_edit_url(3)->out_as_local_url(false), '?'));
+        $this->assertSame(
+            ['component' => 'tool_categorycustomfields', 'area' => 'category', 'id' => '3'],
+            $handler->get_edit_url(3)->params()
+        );
+        $this->assertSame('/local/fieldssuite/manage.php', strtok($handler->get_configuration_url()->out_as_local_url(false), '?'));
     }
 }

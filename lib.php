@@ -36,8 +36,8 @@ function tool_categorycustomfields_extend_navigation_category_settings(
         return;
     }
     $navigation->add(
-        get_string('editvalues', 'tool_categorycustomfields'),
-        new moodle_url('/admin/tool/categorycustomfields/edit.php', ['id' => $context->instanceid]),
+        get_string('editvalues', 'local_fieldssuite'),
+        \tool_categorycustomfields\customfield\category_handler::create()->get_edit_url($context->instanceid),
         navigation_node::TYPE_SETTING,
         null,
         'tool_categorycustomfields',

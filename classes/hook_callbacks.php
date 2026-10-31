@@ -17,6 +17,7 @@
 namespace tool_categorycustomfields;
 
 use core\hook\output\after_standard_main_region_html_generation;
+use local_fieldssuite\local\display;
 use tool_categorycustomfields\customfield\category_handler;
 
 /**
@@ -28,7 +29,7 @@ use tool_categorycustomfields\customfield\category_handler;
  */
 class hook_callbacks {
     /**
-     * Shows the visible custom field values on the category page.
+     * Shows the visible custom field values on the category page, after the category description.
      *
      * @param after_standard_main_region_html_generation $hook
      */
@@ -37,39 +38,6 @@ class hook_callbacks {
         if ($PAGE->pagetype !== 'course-index-category' || !($PAGE->context instanceof \context_coursecat)) {
             return;
         }
-        $html = self::render_category_values((int)$PAGE->context->instanceid);
-        if ($html === '') {
-            return;
-        }
-        $hook->add_html($html);
-        $PAGE->requires->js_call_amd('tool_categorycustomfields/placement', 'init');
-    }
-
-    /**
-     * HTML with the values of a category that the current user can see.
-     *
-     * @param int $categoryid
-     * @return string Empty when there is nothing to show.
-     */
-    public static function render_category_values(int $categoryid): string {
-        global $OUTPUT;
-        $handler = category_handler::create();
-        $fields = [];
-        foreach ($handler->get_instance_data($categoryid) as $data) {
-            $value = $data->export_value();
-            if ($value === null || $value === '') {
-                continue;
-            }
-            $fields[] = [
-                'name' => $data->get_field()->get_formatted_name(),
-                'shortname' => $data->get_field()->get('shortname'),
-                'type' => $data->get_field()->get('type'),
-                'value' => $value,
-            ];
-        }
-        if (!$fields) {
-            return '';
-        }
-        return $OUTPUT->render_from_template('tool_categorycustomfields/values', ['fields' => $fields]);
+        display::add_to_page($hook, category_handler::create(), (int)$PAGE->context->instanceid, '.generalbox.info');
     }
 }

@@ -28,7 +28,7 @@ Main features
 -------------
 
 * Field management at *Site administration > Courses > Category custom fields*, with the same interface as course custom fields.
-* Area settings per field: *Locked* and *Visible on the category page to*.
+* Area settings per field: *Locked* and *Visible to*.
 * Value editing from the category settings menu, with capabilities in the category context.
 * Visible values on the category page.
 * ``tool_categorycustomfields_get_values`` web service, also available to AJAX and the Moodle app.

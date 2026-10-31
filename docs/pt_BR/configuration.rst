@@ -11,7 +11,7 @@ Acesse *Administração do site > Cursos > Campos personalizados de categoria*. 
 3. Preencha o nome, o nome breve (usado pelo web service), a descrição e as configurações do tipo.
 
 .. figure:: img/settings.png
-   :alt: Configurações de um campo personalizado de categoria, com as opções Bloqueado e Visível na página da categoria para.
+   :alt: Configurações de um campo personalizado de categoria, com as opções Bloqueado e Visível para.
    :width: 100%
 
    As configurações da área no fim do formulário do campo.
@@ -22,7 +22,7 @@ Configurações da área
 Bloqueado
    Só usuários com ``tool/categorycustomfields:changelockedcustomfields`` podem editar o valor.
 
-Visível na página da categoria para
+Visível para
    * *Todos*: todos que podem ver a categoria, na página da categoria e pelo web service.
    * *Usuários que podem editar os valores*: só usuários com ``tool/categorycustomfields:edit`` na categoria.
    * *Ninguém*: o valor não aparece nem é devolvido pelo web service. Quem pode editar os valores continua vendo-o na página de edição.

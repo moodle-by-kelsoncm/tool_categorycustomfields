@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Manages the category custom fields.
+ * Old address of the page that manages the category custom fields; the page is now in local_fieldssuite.
  *
  * @package    tool_categorycustomfields
  * @copyright  2026 onwards Kelson da Costa Medeiros
@@ -27,13 +27,4 @@ require_once($CFG->libdir . '/adminlib.php');
 
 admin_externalpage_setup('tool_categorycustomfields');
 
-$PAGE->add_body_class('limitedwidth');
-
-$output = $PAGE->get_renderer('core_customfield');
-$handler = \tool_categorycustomfields\customfield\category_handler::create();
-$outputpage = new \core_customfield\output\management($handler);
-
-echo $output->header(),
-    $output->heading(new lang_string('categorycustomfields', 'tool_categorycustomfields')),
-    $output->render($outputpage),
-    $output->footer();
+redirect(\tool_categorycustomfields\customfield\category_handler::create()->get_configuration_url());

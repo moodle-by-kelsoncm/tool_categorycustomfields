@@ -60,36 +60,8 @@ class get_values extends external_api {
             ['categoryids' => $categoryids]
         );
 
-        $handler = category_handler::create();
-        $categories = [];
-        $warnings = [];
-        foreach (array_unique($categoryids) as $categoryid) {
-            $category = \core_course_category::get($categoryid, IGNORE_MISSING);
-            if (!$category || !$category->id) {
-                $warnings[] = [
-                    'item' => 'category',
-                    'itemid' => $categoryid,
-                    'warningcode' => 'notfound',
-                    'message' => 'Course category not found or not visible.',
-                ];
-                continue;
-            }
-            self::validate_context($category->get_context());
-
-            $fields = [];
-            foreach ($handler->get_instance_data($category->id) as $data) {
-                $field = $data->get_field();
-                $fields[] = [
-                    'shortname' => $field->get('shortname'),
-                    'name' => $field->get_formatted_name(),
-                    'type' => $field->get('type'),
-                    'value' => (string)$data->get_value(),
-                    'displayvalue' => (string)$data->export_value(),
-                ];
-            }
-            $categories[] = ['id' => (int)$category->id, 'fields' => $fields];
-        }
-        return ['categories' => $categories, 'warnings' => $warnings];
+        $result = \local_fieldssuite\external\get_values::get_instances_values(category_handler::create(), $categoryids);
+        return ['categories' => $result['instances'], 'warnings' => $result['warnings']];
     }
 
     /**
@@ -101,13 +73,7 @@ class get_values extends external_api {
         return new external_single_structure([
             'categories' => new external_multiple_structure(new external_single_structure([
                 'id' => new external_value(PARAM_INT, 'Course category id'),
-                'fields' => new external_multiple_structure(new external_single_structure([
-                    'shortname' => new external_value(PARAM_ALPHANUMEXT, 'Field short name'),
-                    'name' => new external_value(PARAM_TEXT, 'Field name'),
-                    'type' => new external_value(PARAM_COMPONENT, 'Field type'),
-                    'value' => new external_value(PARAM_RAW, 'Stored value'),
-                    'displayvalue' => new external_value(PARAM_RAW, 'Value formatted for display'),
-                ])),
+                'fields' => \local_fieldssuite\external\get_values::fields_structure(),
             ])),
             'warnings' => new external_warnings(),
         ]);
