@@ -10,7 +10,7 @@ Requirements
 From a ZIP file
 ---------------
 
-1. Download ``tool_categorycustomfields-<version>.zip`` from the `releases <https://github.com/moodle-by-kelsoncm/tool_categorycustomfields/releases>`_.
+1. Download ``tool_categorycustomfields-<version>.zip`` from the `releases <https://github.com/moodle-fields-suite/tool_categorycustomfields/releases>`_.
 2. Go to *Site administration > Plugins > Install plugins*, upload the ZIP and follow the steps.
 3. Finish the upgrade at *Site administration > Notifications*.
 
@@ -21,7 +21,7 @@ Copy the repository to ``admin/tool/categorycustomfields`` (``public/admin/tool/
 
 .. code-block:: bash
 
-   git clone https://github.com/moodle-by-kelsoncm/tool_categorycustomfields.git public/admin/tool/categorycustomfields
+   git clone https://github.com/moodle-fields-suite/tool_categorycustomfields.git public/admin/tool/categorycustomfields
 
 Languages
 ---------

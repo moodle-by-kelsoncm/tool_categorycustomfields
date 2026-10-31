@@ -2,7 +2,7 @@
 
 [English](#english) · [Português (Brasil)](#português-brasil)
 
-Documentation / Documentação: <https://moodle-by-kelsoncm.github.io/tool_categorycustomfields/>
+Documentation / Documentação: <https://moodle-fields-suite.github.io/tool_categorycustomfields/>
 
 ## English
 
@@ -23,7 +23,7 @@ Instalação: copie este repositório para `admin/tool/categorycustomfields` (`p
 
 ## Support and privacy / Suporte e privacidade
 
-- Issue tracker / Rastreador de issues: <https://github.com/moodle-by-kelsoncm/tool_categorycustomfields/issues>
+- Issue tracker / Rastreador de issues: <https://github.com/moodle-fields-suite/tool_categorycustomfields/issues>
 - Privacy / Privacidade: the values belong to course categories, not to users; nothing leaves Moodle / os valores pertencem às categorias, não aos usuários; nada sai do Moodle.
 - Translations / Traduções: only English is shipped; other languages go through AMOS / o pacote traz só inglês; outros idiomas via AMOS.
 
